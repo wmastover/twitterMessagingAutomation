@@ -35,69 +35,67 @@ array = readCSV("accounts.csv")
 
 chromedriver = ChromeDriverManager().install()
 
-
-# chrome_options = Options()
-# # chrome_options.add_argument("user-data-dir=/Users/will/Library/Application Support/Google/Chrome/") # Path to your chrome user data
-# chrome_options.add_argument("profile-directory=Profile 2") # Your profile directory
-# chrome_options.add_argument("--no-sandbox") 
-# chrome_options.add_argument("--disable-dev-shm-usage")
-
 webdriver_service = Service(ChromeDriverManager().install())
 
 driver = webdriver.Chrome(service=webdriver_service)
 
 
-twitterLogon("js5668301@gmail.com", "SecondBrainAnna",  "Frontdoor2023", driver)
+# twitterLogon("js5668301@gmail.com", "SecondBrainAnna",  "Frontdoor2023", driver)
 
-accountName = "anna"
+twitterLogon("wmabetting@gmail.com", "FrontdoorWill",  "Frontdoor2023", driver)
+
+accountName = "will"
 
 ouputArray = []
 
-for row in array:
+for index, row in enumerate(array):
     try:
-        driver.get(row[0])
-        time.sleep(10)
+        if row[2] != "done":
 
-        # try:
-        DMElement = driver.find_element(By.XPATH, '//div[@data-testid="sendDMFromProfile"]')
-        DMElement.click()
-        time.sleep(40)
+            driver.get(row[0])
+            time.sleep(10)
 
-        messageBar = driver.find_element(By.XPATH, "//*[@data-testid='dmComposerTextInput']")
-        
-        messageBar.click()
+            # try:
+            DMElement = driver.find_element(By.XPATH, '//div[@data-testid="sendDMFromProfile"]')
+            DMElement.click()
+            time.sleep(40)
 
-        pyautogui.typewrite(row[1])
+            messageBar = driver.find_element(By.XPATH, "//*[@data-testid='dmComposerTextInput']")
+            
+            messageBar.click()
 
-        twitterNewline()
+            pyautogui.typewrite(row[1])
 
-        pyautogui.typewrite("I also noticed that you're into curating content and exploring knowledge in the tech sphere.")
+            twitterNewline()
 
-        twitterNewline()
+            pyautogui.typewrite("I also noticed that you're into curating content and exploring knowledge in the tech sphere.")
 
-        pyautogui.typewrite("I built a GPT-4 powered tool to automatically organise your bookmarks and explore a hand-curated db of tech knowledge from some of the best builders around. ")
+            twitterNewline()
 
-        twitterNewline()
+            pyautogui.typewrite("I built a GPT-4 powered tool to automatically organise your bookmarks and explore a hand-curated db of tech knowledge from some of the best builders around. ")
 
-        pyautogui.typewrite("We're looking for people passionate about tech to try it out and explore - you seem like a great fit and I'd love to share access! Hit me back if you're interested.")
+            twitterNewline()
 
-        sendButton = driver.find_element(By.XPATH, "//*[@data-testid='dmComposerSendButton']")
+            pyautogui.typewrite("We're looking for people passionate about tech to try it out and explore - you seem like a great fit and I'd love to share access! Hit me back if you're interested.")
 
-        time.sleep(1)
+            sendButton = driver.find_element(By.XPATH, "//*[@data-testid='dmComposerSendButton']")
 
-        sendButton.click( )
+            time.sleep(1)
 
-        ouputArray.append([row[0],row[1], accountName])
+            # sendButton.click()
+
+            array[index][2] = "done"
+
+        else:
+            print("not equal to done")
 
         time.sleep(3)
 
-
     except:
         print("error")
-        ouputArray.append([row[0],row[1], "Not Sent"])
+        
 
-
-    saveAsCSV(ouputArray, "outputArray.csv")
+    saveAsCSV(array, "accounts.csv")
 
     
     # except:
