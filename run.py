@@ -58,7 +58,7 @@ for index, row in enumerate(array):
             # try:
             DMElement = driver.find_element(By.XPATH, '//div[@data-testid="sendDMFromProfile"]')
             DMElement.click()
-            time.sleep(40)
+            time.sleep(23)
 
             messageBar = driver.find_element(By.XPATH, "//*[@data-testid='dmComposerTextInput']")
             
@@ -80,8 +80,6 @@ for index, row in enumerate(array):
 
             sendButton = driver.find_element(By.XPATH, "//*[@data-testid='dmComposerSendButton']")
 
-            time.sleep(1)
-
             # sendButton.click()
 
             array[index][2] = "done"
@@ -89,7 +87,7 @@ for index, row in enumerate(array):
         else:
             print("not equal to done")
 
-        time.sleep(3)
+        time.sleep(5)
 
     except:
         print("error")
