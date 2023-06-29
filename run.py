@@ -40,9 +40,9 @@ webdriver_service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=webdriver_service)
 
 
-# twitterLogon("js5668301@gmail.com", "SecondBrainAnna",  "Frontdoor2023", driver)
+twitterLogon("js5668301@gmail.com", "SecondBrainAnna",  "Frontdoor2023", driver)
 
-twitterLogon("wmabetting@gmail.com", "FrontdoorWill",  "Frontdoor2023", driver)
+# twitterLogon("wmabetting@gmail.com", "FrontdoorWill",  "Frontdoor2023", driver)
 
 accountName = "will"
 
@@ -58,7 +58,7 @@ for index, row in enumerate(array):
             # try:
             DMElement = driver.find_element(By.XPATH, '//div[@data-testid="sendDMFromProfile"]')
             DMElement.click()
-            time.sleep(23)
+            time.sleep(40)
 
             messageBar = driver.find_element(By.XPATH, "//*[@data-testid='dmComposerTextInput']")
             
@@ -80,14 +80,17 @@ for index, row in enumerate(array):
 
             sendButton = driver.find_element(By.XPATH, "//*[@data-testid='dmComposerSendButton']")
 
-            # sendButton.click()
+            time.sleep(3)
+
+            sendButton.click()
 
             array[index][2] = "done"
 
+            time.sleep(3)
         else:
-            print("not equal to done")
+            print("equal to done")
 
-        time.sleep(5)
+        
 
     except:
         print("error")
